@@ -10,7 +10,7 @@ function genericOnClick(info, tab) {
   console.log("tab: " + JSON.stringify(tab));
 
   chrome.tabs.create({
-      url: chrome.extension.getURL('popup.html'),
+      url: chrome.extension.getURL('texteditor.html'),
       active: false
     }, function(tab) {
       // After the tab has been created, open a window to inject the tab
@@ -74,14 +74,3 @@ chrome.contextMenus.create({"title": "Oops", "parentId":999}, function() {
 
 //////////////////////////////////////////////////////////
 // ACTIONS
-
-// Listen for messages from the client side
-
-
-//chrome.app.runtime.onLaunched.addListener(launch);
-chrome.browserAction.onCreated.addListener(function (tab) {
-	// for the current tab, inject the "inject.js" file & execute it
-	chrome.tabs.executeScript(tab.ib, {
-		file: 'common/js/inject.js'
-	});
-});

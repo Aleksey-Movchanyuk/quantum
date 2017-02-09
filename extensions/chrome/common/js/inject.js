@@ -1,13 +1,5 @@
-(function() {
+var iframe  = document.createElement ("iframe");
+iframe.style.cssText = "visibility: hidden;top: -9999px;position: absolute;opacity: 0",
+iframe.src  = chrome.extension.getURL ("texteditor.html");
 
-	// just place a div at top right
-	var div = document.createElement('div');
-	div.style.position = 'fixed';
-	div.style.top = 0;
-	div.style.right = 0;
-	div.textContent = 'Injected!';
-	document.body.appendChild(div);
-
-	alert('inserted self... giggity');
-
-})();
+document.body.appendChild( iframe );
