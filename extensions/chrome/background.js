@@ -55,7 +55,7 @@ var yItem = chrome.contextMenus.create(
 var contexts = ["editable"];
 for (var i = 0; i < contexts.length; i++) {
   var context = contexts[i];
-  var title = "Edit this text with Quantum A.I.";
+  var title = "Edit this text with Quantum";
   var id = chrome.contextMenus.create({"title": title, "contexts":[context],
                                        "onclick": genericOnClick});
   console.log("'" + context + "' item:" + id);
