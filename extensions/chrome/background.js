@@ -24,53 +24,83 @@ function genericOnClick(info, tab) {
 
 }
 
-// A generic onclick callback function.
-function radioOnClick(info, tab) {
-  console.log("radio item " + info.menuItemId +
-              " was clicked (previous checked state was "  +
-              info.wasChecked + ")");
+// An editable onclick callback function.
+function editableOnClick(info, tab) {
+  console.log("item " + info.menuItemId + " was clicked");
+  console.log("info: " + JSON.stringify(info));
+  console.log("tab: " + JSON.stringify(tab));
+
+  chrome.tabs.executeScript({
+    code: '$(\'.dialogbox\').css(\'display\',\'block\')'
+  });
+
 }
-
-/* ---------------------------------------------------------
-   Create common menu
----------------------------------------------------------*/
-var textEditorItem = chrome.contextMenus.create(
-    {"title": "Quantum Text Editor", "onclick": genericOnClick});
-
-var textAnalyzerItem = chrome.contextMenus.create(
-    {"title": "Quantum Text Analyzer", "onclick": genericOnClick});
-
-chrome.contextMenus.create({"type": "separator"});
-
-
-var xItem = chrome.contextMenus.create(
-    {"title": "Quantum Feature X", "onclick": genericOnClick});
-
-var yItem = chrome.contextMenus.create(
-    {"title": "Quantum Feature Y", "onclick": genericOnClick});
-
-/* ---------------------------------------------------------
-   Create context type menu
----------------------------------------------------------*/
-var contexts = ["editable"];
-for (var i = 0; i < contexts.length; i++) {
-  var context = contexts[i];
-  var title = "Edit this text with Quantum";
-  var id = chrome.contextMenus.create({"title": title, "contexts":[context],
-                                       "onclick": genericOnClick});
-  console.log("'" + context + "' item:" + id);
-}
-
-
-// Intentionally create an invalid item, to show off error checking in the
-// create callback.
-console.log("About to try creating an invalid item - an error about " +
-            "item 999 should show up");
-chrome.contextMenus.create({"title": "Oops", "parentId":999}, function() {
-  if (chrome.extension.lastError) {
-    console.log("Got expected error: " + chrome.extension.lastError.message);
-  }
-});
 
 //////////////////////////////////////////////////////////
-// ACTIONS
+// CREATE CONTEXT MENU
+////////////////////////////////////////////////////////
+var menuItems = [
+  {
+  	"id": "quantumTextEditor",
+  	"title": "Quantum Text Editor",
+    "type": "normal",
+  	"contexts": ["page"]
+  },
+  {
+    "id": "quantumTextAnalyzer",
+  	"title": "Quantum Text Analyzer",
+    "type": "normal",
+  	"contexts": ["page"]
+  },
+  {
+    "id": "quantumMenuSeparator1",
+  	"title": "",
+    "type": "separator",
+  	"contexts": ["page"]
+  },
+  {
+    "id": "quantumFeatureX",
+  	"title": "Quantum Feature X",
+    "type": "normal",
+  	"contexts": ["page"]
+  },
+  {
+    "id": "quantumFeatureY",
+  	"title": "Quantum Feature Y",
+    "type": "normal",
+  	"contexts": ["page"]
+  },
+  {
+    "id": "quantumTextEditorFromEditable",
+  	"title": "Edit this text with Quantum",
+    "type": "normal",
+  	"contexts": ["editable"]
+  }
+];
+
+for (var i = 0; i < menuItems.length; i++) {
+  var menuItem = menuItems[i];
+  var id = chrome.contextMenus.create(menuItem);
+}
+
+chrome.contextMenus.onClicked.addListener(function (info, tab) {
+
+  switch(info.menuItemId) {
+      case "quantumTextEditor":
+          genericOnClick(info, tab);
+          break;
+      case "quantumTextAnalyzer":
+          alert("quantumTextAnalyzer");
+          break;
+      case "quantumFeatureX":
+          alert("quantumFeatureX");
+          break;
+      case "quantumFeatureY":
+          alert("quantumFeatureY");
+          break;
+      case "quantumTextEditorFromEditable":
+          editableOnClick(info, tab);
+          break;
+  }
+
+});

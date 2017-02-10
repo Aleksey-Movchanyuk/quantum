@@ -22,18 +22,15 @@
   "content_scripts": [
           {
             "matches": ["http://*/*", "https://*/*"],
-            "js": ["assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js", "common/js/inject.js"],
-            "run_at": "document_end",
-            "all_frames": true,
-            "match_about_blank": true
+            "js": ["assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js","content.js"],
+            "run_at": "document_end"
           }
   ],
 
-  "web_accessible_resources": ["texteditor.html"],
+  "web_accessible_resources": [ "" ],
 
   "permissions": [
      "contextMenus",
-     "activeTab",
      "tabs",
      "clipboardRead",
      "<all_urls>"
