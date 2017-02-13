@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "Quantum A.I.",
+  "name": "Quantum.ai",
   "description": "Quantum Artifical Intelligence Google Chrome Extension",
   "version": "1.0",
 
@@ -11,14 +11,29 @@
             "128": "common/icons/electronic_brain.png"
           },
 
+  "browser_action": {
+            "default_popup": "popup.html"
+  },
+
   "background": {
           "scripts": ["background.js"]
         },
 
+  "content_scripts": [
+          {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js","content.js"],
+            "run_at": "document_end"
+          }
+  ],
+
+  "web_accessible_resources": [ "" ],
+
   "permissions": [
      "contextMenus",
      "tabs",
-     "clipboardRead"
+     "clipboardRead",
+     "<all_urls>"
    ]
 
 }
