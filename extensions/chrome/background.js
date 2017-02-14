@@ -24,17 +24,6 @@ function genericOnClick(info, tab) {
 
 }
 
-// An editable onclick callback function.
-function editableOnClick(info, tab) {
-  console.log("item " + info.menuItemId + " was clicked");
-  console.log("info: " + JSON.stringify(info));
-  console.log("tab: " + JSON.stringify(tab));
-
-  chrome.tabs.executeScript({
-    code: '$(\'.dialogbox\').css(\'display\',\'block\')'
-  });
-
-}
 
 //////////////////////////////////////////////////////////
 // CREATE CONTEXT MENU
@@ -99,8 +88,24 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
           alert("quantumFeatureY");
           break;
       case "quantumTextEditorFromEditable":
-          editableOnClick(info, tab);
+          chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"});
           break;
   }
 
+});
+
+
+//Messages from inject js
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+
+	switch(request.action){
+    case 'popupQuantumTextEditor':
+      chrome.tabs.sendMessage(sender.tab.id, {action: "popupQuantumTextEditor"});
+		break;
+		case 'hideQuantumTextEditorPopup':
+      chrome.tabs.sendMessage(sender.tab.id, {action: "hideQuantumTextEditorPopup"});
+		break;
+	}
+
+	return true;
 });

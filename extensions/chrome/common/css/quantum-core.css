@@ -4,9 +4,154 @@
   src: url('../fonts/LatoOFL/Lato-Lig.ttf') format('truetype');
 }
 
+
+/*
+* Popup structure
+*/
+.quantum-text-editor-popup {
+  position: fixed;
+  overflow-y: auto;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  color: rgb(0, 0, 0);
+  z-index: 9999999;
+  display: none;
+  transform: translateZ(0px);
+  transition: opacity 0.3s ease-in;
+  background: rgba(0, 0, 0, 0.5) !important;
+}
+
+.quantum-text-editor {
+    border-radius: 4px;
+    margin: 0;
+    min-width: 800px;
+    min-height: 600;
+    font-family: 'Lato',sans-serif;
+
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0,0,0,.5);
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%); /* IE 9 */
+    -webkit-transform: translate(-50%, -50%); /* Safari iOS */
+    transform: translate(-50%, -50%); /* Rest of browsers */
+}
+
+
+.quantum-text-editor-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.quantum-text-editor-title {
+    margin: 0;
+    line-height: 1.42857143;
+    font-size: 18px;
+}
+
+.quantum-text-editor-body {
+    position: relative;
+    padding: 15px;
+}
+
+.quantum-text-editor-footer {
+  padding: 5px 0px 5px 0px;
+  text-align: right;
+  border-top: 1px solid #e5e5e5;
+  position: absolute;
+  bottom: 0;
+  height: 35px;
+  width: 100%;
+  background: #f6f6f6;
+  background: -webkit-linear-gradient(right,#eee 0%,#f6f6f6 100%);
+  background: -webkit-gradient(linear,right top,left top,from(#eee),to(#f6f6f6));
+  background: linear-gradient(to left,#eee 0%,#f6f6f6 100%);
+  z-index: 2000;
+  line-height: 100%;
+  color: #acb0b8;
+  font-size: 10px!important;
+  text-transform: uppercase;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.quantum-text-editor-footer-lang,
+.quantum-text-editor-footer-sentiment,
+.quantum-text-editor-footer-words,
+.quantum-text-editor-footer-btns {
+  display: inline-block;
+  padding-right: 5px;
+  width: 24%;
+  border-left: brown;
+}
+
+.quantum-text-editor-close-btn {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+
+    background: 0;
+    border: 0;
+}
+
+.quantum-text-editor-submit-btn {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+
 /*
  * Base structure
  */
+ .quantum-text-area {
+   width: 100%;
+   height: 100%;
+   font-size: 14px;
+   font-family: inherit;
+   line-height: 24px;
+   border: none;
+ }
+
+
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
