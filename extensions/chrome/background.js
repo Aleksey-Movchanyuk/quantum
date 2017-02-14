@@ -1,6 +1,4 @@
-// Copyright (c) 2010 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
+
 
 
 // A generic onclick callback function.
@@ -88,7 +86,14 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
           alert("quantumFeatureY");
           break;
       case "quantumTextEditorFromEditable":
-          chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"});
+          // send messgae to content script
+          chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"}, function(response) {
+
+            chrome.tabs.executeScript(null, {
+        				code: "setCurrentQuantumText('" + response.activeText + "')"
+        			});
+
+          });
           break;
   }
 
@@ -104,6 +109,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 		break;
 		case 'hideQuantumTextEditorPopup':
       chrome.tabs.sendMessage(sender.tab.id, {action: "hideQuantumTextEditorPopup"});
+		break;
+    case 'submitQuantumTextEditorPopup':
+      chrome.tabs.sendMessage(sender.tab.id, {action: "submitQuantumTextEditorPopup", text: request.text});
 		break;
 	}
 

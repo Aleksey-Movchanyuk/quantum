@@ -1,10 +1,23 @@
 
+function getCurrentQuantumText() {
+  return $('.quantum-text-area').val();
+}
 
+function setCurrentQuantumText(text) {
+  alert(text);
+  $('.quantum-text-area').val(text);
+}
 
 $(document).ready(function() {
+
+  // Popup Close button
   $(".quantum-text-editor-close-btn").click(function () {
-    //alert("Hello!");
     chrome.extension.sendMessage({action: 'hideQuantumTextEditorPopup'})
-    //$('.quantum-text-editor-popup').css('display','none');
   });
+
+  // Popup Submit button
+  $(".quantum-text-editor-submit-btn").click(function () {
+      chrome.extension.sendMessage({action: 'submitQuantumTextEditorPopup', text: getCurrentQuantumText()});
+  });
+
 });

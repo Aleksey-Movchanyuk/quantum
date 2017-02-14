@@ -1,10 +1,32 @@
+var activeElement;
+var activeElementText;
+
 hideQuantumTextEditor = function() {
 		$('.quantum-text-editor-popup').css('display','none');
 }
 
 popupQuantumTextEditor = function() {
+	  activeElement = document.activeElement;
+		activeElementText = activeElement.value;
+
 		$('.quantum-text-editor-popup').css('display','block');
+
+		/*
+		chrome.tabs.executeScript(null, {
+				code: "setCurrentQuantumText('" + activeElementText + "')"
+			});
+			*/
 }
+
+function replaceText(elem, text) {
+    elem.value =  text;
+}
+
+submitQuantumTextEditor = function(text) {
+	  replaceText(activeElement, text);
+		hideQuantumTextEditor();
+}
+
 
 
 /*
@@ -18,7 +40,6 @@ var url = chrome.extension.getURL('frame.html');
 var iframe = "<iframe src='" + url + "' class='quantum-text-editor-popup' style=\"display:none;opacity:1;\" frameBorder=\"0\"></iframe>";
 
 //document.body.appendChild( div );
-
 $('body').append(iframe);
 
 /*
@@ -51,11 +72,16 @@ QuantumEngine = {
 
           case 'popupQuantumTextEditor':
     				popupQuantumTextEditor();
+						sendResponse({activeText: activeElementText});
     				break;
 
     			case 'hideQuantumTextEditorPopup':
     				hideQuantumTextEditor();
     				break;
+
+					case 'submitQuantumTextEditorPopup':
+	    			submitQuantumTextEditor(data.text);
+	    			break;
 
 		}
 		return true;
