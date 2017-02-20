@@ -87,13 +87,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
           break;
       case "quantumTextEditorFromEditable":
           // send messgae to content script
-          chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"}, function(response) {
-
-            chrome.tabs.executeScript(null, {
-        				code: "setCurrentQuantumText('" + response.activeText + "')"
-        			});
-
-          });
+          chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"});
           break;
   }
 
@@ -104,9 +98,6 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 	switch(request.action){
-    case 'popupQuantumTextEditor':
-      chrome.tabs.sendMessage(sender.tab.id, {action: "popupQuantumTextEditor"});
-		break;
 		case 'hideQuantumTextEditorPopup':
       chrome.tabs.sendMessage(sender.tab.id, {action: "hideQuantumTextEditorPopup"});
 		break;

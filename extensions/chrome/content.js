@@ -10,12 +10,8 @@ popupQuantumTextEditor = function() {
 		activeElementText = activeElement.value;
 
 		$('.quantum-text-editor-popup').css('display','block');
+		//$('.quantum-text-area').val(activeElementText);
 
-		/*
-		chrome.tabs.executeScript(null, {
-				code: "setCurrentQuantumText('" + activeElementText + "')"
-			});
-			*/
 }
 
 function replaceText(elem, text) {
@@ -28,15 +24,7 @@ submitQuantumTextEditor = function(text) {
 }
 
 
-
-/*
-var div = document.createElement("div");
-div.className = "dialogbox";
-div.style.cssText = "width:100px; height:100px; background:grey;display:none";
-div.src = "<div class=\"dialogcontent\"> This is Dialogue box</div><a id=\"click\">click here</a>";
-*/
-
-var url = chrome.extension.getURL('frame.html');
+var url = chrome.extension.getURL('texteditor.html');
 var iframe = "<iframe src='" + url + "' class='quantum-text-editor-popup' style=\"display:none;opacity:1;\" frameBorder=\"0\"></iframe>";
 
 //document.body.appendChild( div );
@@ -72,7 +60,6 @@ QuantumEngine = {
 
           case 'popupQuantumTextEditor':
     				popupQuantumTextEditor();
-						sendResponse({activeText: activeElementText});
     				break;
 
     			case 'hideQuantumTextEditorPopup':

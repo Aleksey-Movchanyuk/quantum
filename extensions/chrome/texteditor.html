@@ -1,54 +1,30 @@
-<html>
-  <head>
-    <title>Quantum Text Editor</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="assets/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="common/css/quantum-core.css" rel="stylesheet">
+<!--link href="assets/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet"-->
 
-    <!-- Custom CSS -->
-    <link href="common/css/quantum-core.css" rel="stylesheet">
+<div>
+	<div class="quantum-text-editor">
 
-  </head>
-  <body>
-    <div class="popup">
+		<div class="quantum-text-editor-header">
+			<button type="button" class="quantum-text-editor-close-btn" >&times;</button>
+			<h4 class="quantum-text-editor-title">Quantum Text Editor</h4>
+		</div>
 
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-sm-3 col-md-2 sidebar">
-            <ul class="nav nav-sidebar">
-              <li class="active"><a href="#">Text Editor <span class="sr-only">(current)</span></a></li>
-              <li><a href="#">My Texts</a></li>
-              <li><a href="#">My Corpora</a></li>
-            </ul>
-          </div>
+		<textarea class="quantum-text-area">Some text in the modal.</textarea>
 
-          <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+		    <!-- Modal content-->
 
+					<div class="quantum-text-editor-footer">
+						<div class="quantum-text-editor-footer-lang">CURRENT LANGUAGE: ENGLISH</div>
+						<div class="quantum-text-editor-footer-sentiment">SENTIMENT: NEUTRAL</div>
+						<div class="quantum-text-editor-footer-words">COUNT OF WORDS: 7</div>
+						<div class="quantum-text-editor-footer-btns">
+							<button type="button" class="quantum-text-editor-submit-btn">Submit</button>
+						</div>
+					</div>
 
-              <div class="main-scroller">
-                <div class="content-wrap">
-                  <div class="textarea-container" id="editor">
-                      <div class="textarea-wrap">
-                        <!--vue-if-->
-                        <!--vue-if-->
-                        <div class="quantum-text-editor" eqa_id="textfield" contenteditable="" id="textarea" spellcheck="false" style="white-space: normal;">Hello world</div><!--vue-if-->
-                      </div>
-                  </div>
-                </div>
-              </div>
+	</div>
+</div>
 
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="assets/bootstrap/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-
-
-  </body>
-</html>
+<script src="assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js"></script>
+<script src="common/js/texteditor.js"></script>

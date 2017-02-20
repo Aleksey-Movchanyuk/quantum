@@ -4,20 +4,20 @@ function getCurrentQuantumText() {
 }
 
 function setCurrentQuantumText(text) {
-  alert(text);
+  //alert(text);
   $('.quantum-text-area').val(text);
 }
 
 $(document).ready(function() {
 
-  // Popup Close button
+  // Close Button
   $(".quantum-text-editor-close-btn").click(function () {
     chrome.extension.sendMessage({action: 'hideQuantumTextEditorPopup'})
   });
 
-  // Popup Submit button
+  // Submit Button
   $(".quantum-text-editor-submit-btn").click(function () {
-      chrome.extension.sendMessage({action: 'submitQuantumTextEditorPopup', text: getCurrentQuantumText()});
+    chrome.extension.sendMessage({action: 'submitQuantumTextEditorPopup', text: getCurrentQuantumText()});
   });
 
 });
