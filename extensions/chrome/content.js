@@ -16,9 +16,6 @@ window.addEventListener("message", function (e) {
 });
 
 
-QuantumTextEditorEngine.inject();
-
-
 /*
 chrome.runtime.sendMessage({action: "desktopAppRun"});
 */

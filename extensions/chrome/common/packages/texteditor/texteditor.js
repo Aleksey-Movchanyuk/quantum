@@ -3,9 +3,21 @@ function getCurrentQuantumText() {
   return $('.quantum-text-area').val();
 }
 
-function setCurrentQuantumText(text) {
-  //alert(text);
-  $('.quantum-text-area').val(text);
+function setCurrentQuantumText(evt) {
+
+  //if (evt.origin == "http://quantum.ai") {
+    $('.quantum-text-area').val(evt.data);
+  //}
+}
+
+
+// messages from content.js
+if (window.addEventListener) {
+	// For standards-compliant web browsers
+	window.addEventListener("message", setCurrentQuantumText, false);
+}
+else {
+	window.attachEvent("onmessage", setCurrentQuantumText);
 }
 
 
@@ -24,3 +36,4 @@ $(document).ready(function() {
   });
 
 });
+
