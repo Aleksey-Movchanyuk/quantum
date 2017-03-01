@@ -23,13 +23,13 @@
           {
             "matches": ["*://*/*"],
             "css" : ["common/css/quantum-core.css"],
-            "js": ["assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js", "content.js"],
+            "js": ["assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js", "common/js/quantum.js", "content.js"],
             "run_at": "document_end",
             "all_frames": true
           }
   ],
 
-  "web_accessible_resources": [ "texteditor.html" ],
+  "web_accessible_resources": [ "common/packages/texteditor/texteditor.html" ],
 
 
   "permissions": [

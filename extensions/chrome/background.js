@@ -8,7 +8,7 @@ function genericOnClick(info, tab) {
   console.log("tab: " + JSON.stringify(tab));
 
   chrome.tabs.create({
-      url: chrome.extension.getURL('texteditor.html'),
+      url: chrome.extension.getURL('packages/textedotor/texteditor.html'),
       active: false
     }, function(tab) {
       // After the tab has been created, open a window to inject the tab
@@ -86,7 +86,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
           alert("quantumFeatureY");
           break;
       case "quantumTextEditorFromEditable":
-          // send messgae to content script
+          // send message to content script
           chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"});
           break;
   }
@@ -94,7 +94,7 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
 });
 
 
-//Messages from inject js
+//Messages from iframe js
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 
 	switch(request.action){

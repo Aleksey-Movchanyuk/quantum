@@ -8,6 +8,9 @@ function setCurrentQuantumText(text) {
   $('.quantum-text-area').val(text);
 }
 
+
+
+// messages to background.js
 $(document).ready(function() {
 
   // Close Button
