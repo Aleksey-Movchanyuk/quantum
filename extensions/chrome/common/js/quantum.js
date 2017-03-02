@@ -1,6 +1,6 @@
 // Definition of quantum namespaces
 
-var QuantumTextEditorEngine = {
+var QuantumTextEditor = {
 
     activeElement : null,
     activeElementText : null,

@@ -163,3 +163,35 @@
 .quantum-text-editor {
   font: 25px/30px 'Lato-Light', Arial, sans-serif;
 }
+
+
+.quantum-text-help-list {
+  font: 25px/30px 'Lato-Light', Arial, sans-serif;
+
+  height: 150px;
+  position: relative;
+  z-index: 10001;
+
+  top: 30px;
+  left: 13px;
+
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* padding-top: 10px; 
+  padding-bottom: 20px; 
+  position: relative;*/
+
+}
+
+.quantum-text-help-list-elem {
+  font-size: 14px;
+  margin: 0;
+  padding-left: 4px;
+}
+
+.quantum-text-help-list-elem:hover {
+    color: #00a1de;
+    background-color: #EEE;
+    cursor: hand;
+
+}
