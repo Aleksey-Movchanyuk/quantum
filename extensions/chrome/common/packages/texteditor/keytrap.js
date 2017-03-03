@@ -9,6 +9,7 @@ var QuantumTextEditorProcessor = {
     * @type {Object}
     */
     _BREAK_KEY_MAP : {
+                13: '', //enter
                 27: '', //escape
                 32: ' ',
                 33: '!',
@@ -45,77 +46,170 @@ var QuantumTextEditorProcessor = {
                 126: '~'
     },
 
-    selectHint : function(e) {
+    // text box elements
+    textBox : $('#quantum-text-area'),
+    textBoxHelper : $('#quantum-text-help-list'),
+    textBoxHelperItem : -1,
 
-        console.log(e);
-        $('#quantum-text-help-list').hide();
-        $('#quantum-text-area').focus();
-    },
+    // useful functions
+    getCursorPos : function() {
+        var input = this.textBox;
 
-    getCursorPosition : function() {
-        var ctrl = $('#quantum-text-area');
-        var CaretPos = 0; // IE Support
-            if (document.selection) {
-                ctrl.focus();
-                var Sel = document.selection.createRange();
-                Sel.moveStart('character', -ctrl.value.length);
-                CaretPos = Sel.text.length;
+        if ("selectionStart" in input && document.activeElement == input) {
+            return {
+                start: input.selectionStart,
+                end: input.selectionEnd
+            };
+        }
+        else if (input.createTextRange) {
+            var sel = document.selection.createRange();
+            if (sel.parentElement() === input) {
+                var rng = input.createTextRange();
+                rng.moveToBookmark(sel.getBookmark());
+                for (var len = 0;
+                        rng.compareEndPoints("EndToStart", rng) > 0;
+                        rng.moveEnd("character", -1)) {
+                    len++;
+                }
+                rng.setEndPoint("StartToStart", input.createTextRange());
+                for (var pos = { start: 0, end: len };
+                        rng.compareEndPoints("EndToStart", rng) > 0;
+                        rng.moveEnd("character", -1)) {
+                    pos.start++;
+                    pos.end++;
+                }
+                return pos;
             }
-            // Firefox support
-            else if (ctrl.selectionStart || ctrl.selectionStart == '0')
-                CaretPos = ctrl.selectionStart;
-            return (CaretPos);
+        }
+        return -1;
     },
 
     getCurrentSentence : function() {
 
-        return $('#quantum-text-area').val();
+        return this.textBox.val();
     },
 
-    displayHint : function(e) {
+    predictWord : function(sentence) {
+
+        var result = [
+            sentence + ' 0',
+            sentence + ' 1',
+            sentence + ' 2',
+            sentence + ' 3',
+            sentence + ' 4'
+        ];
+
+        return result;
+    },
+
+    // hide helper
+    hideHelper : function() {
+        // reset selected item from helper
+        this.textBoxHelperItem = -1;
+        this.textBoxHelper.hide();
+        this.textBox.focus();
+    },
+
+    // on select helper
+    selectHelper : function(e) {
+        this.hideHelper();
+    },
+
+    // display helper
+    displayHelper : function(e) {
 
         if (this._BREAK_KEY_MAP[e.which]) {
-            $('#quantum-text-help-list').hide();
+            this.hideHelper();
         }
         else {
+            // Find cursor position
+
+            // Predict word
+            var predictionResult = this.predictWord(this.getCurrentSentence());
+
+            // Predict sentence
 
             // Clear help list
-            $("#quantum-text-help-list").empty();
+            this.textBoxHelper.empty();
 
             var currentSentance = this.getCurrentSentence() + String.fromCharCode(e.which);
             console.log(e.which);
 
             // Fill help list with new values
-            for(var i = 0; i < 5; i++) {
+            for(var i = 0; i < predictionResult.length; i++) {
 
                 $('<p>', {
                     'class': 'quantum-text-help-list-elem',
-                    text: currentSentance + " " + i,
+                    'id' : 'quantum-text-help-list-elem-' + i,
+                    text: predictionResult[i],
                     click: function(e){
                         e.preventDefault();
                         //alert("test")
-                        QuantumTextEditorProcessor.selectHint(e);
+                        QuantumTextEditorProcessor.selectHelper(e);
                     }}).appendTo("#quantum-text-help-list");
 
             }
 
-            $('#quantum-text-help-list').show();
+            this.textBoxHelper.show();
         }
     },
 
+    chooseHelperItemNext : function() {
+
+        // if next item exists
+        if( $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem+1)).length )         // use this if you are using id to check
+        {
+            // remove selection from old item
+            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).removeClass('quantum-text-help-list-elem-current');
+
+            // add selection to the new item
+            this.textBoxHelperItem++;
+            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).addClass('quantum-text-help-list-elem-current');
+        }
+    },
+
+    chooseHelperItemPrev : function() {
+
+        // if next item exists
+        if( $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem-1)).length )         // use this if you are using id to check
+        {
+            // remove selection from old item
+            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).removeClass('quantum-text-help-list-elem-current');
+
+            // add selection to the new item
+            this.textBoxHelperItem--;
+            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).addClass('quantum-text-help-list-elem-current');
+        }
+    }
+
 }
 
-// keypress
-$(document).on("keypress", function (e) {
+
+
+// keyup
+$(QuantumTextEditorProcessor.textBox).on("keyup", function (e) {
     // use e.which
     //alert(e.which);
-    QuantumTextEditorProcessor.displayHint(e);
-});
+    if(e.which == 27) { // escape key
+        QuantumTextEditorProcessor.hideHelper();
+    }
+    else if(e.which == 40) { // down key
+        // if helper is showen
+        if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ){
 
-// escape keypress
-$(document).on("keyup", function (e) {
-    // use e.which
-    if(e.which == 27) {
-        $('#quantum-text-help-list').hide();
+            QuantumTextEditorProcessor.textBoxHelper.focus();
+            QuantumTextEditorProcessor.chooseHelperItemNext();
+        }
+    }
+    else if(e.which == 38) { // up key
+        // if helper is showen
+        if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ){
+
+            QuantumTextEditorProcessor.textBoxHelper.focus();
+            QuantumTextEditorProcessor.chooseHelperItemPrev();
+        }
+    }
+    else {
+        QuantumTextEditorProcessor.displayHelper(e);        
     }
 });

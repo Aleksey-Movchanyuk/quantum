@@ -193,5 +193,10 @@
     color: #00a1de;
     background-color: #EEE;
     cursor: hand;
+}
 
+.quantum-text-help-list-elem-current {
+    color: #00a1de;
+    background-color: #EEE;
+    cursor: hand;
 }
