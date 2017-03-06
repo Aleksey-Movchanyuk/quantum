@@ -64,7 +64,9 @@ var QuantumTextEditorProcessor = {
     // text box elements
     textBox : $('#quantum-text-area'),
     textBoxHelper : $('#quantum-text-help-list'),
-    textBoxHelperItem : -1,
+    
+    selectedHelperItem : -1,
+    selectedHelperText : '',
 
     // useful functions
     getCursorPos : function() {
@@ -107,14 +109,32 @@ var QuantumTextEditorProcessor = {
     // Hide helper
     hideHelper : function() {
         // reset selected item from helper
-        this.textBoxHelperItem = -1;
+        this.selectedHelperItem = -1;
+
         this.textBoxHelper.hide();
         this.textBox.focus();
     },
 
-    // On select helper
-    selectHelper : function(e) {
+    // Update current sentance
+    updateCurrentSentance : function(text) {
+        this.textBox.val(text);
+    },
+
+    // On keyboard helper select
+    onKeyboardHelperSelect : function() {
+        this.selectedHelperText = $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem)).text();
         this.hideHelper();
+
+        this.updateCurrentSentance(this.selectedHelperText);
+    },
+
+    // On mouse helper select
+    onMouseHelperSelect : function(e) {
+        
+        this.selectedHelperText = e.currentTarget.innerText;
+        this.hideHelper();
+
+        this.updateCurrentSentance(this.selectedHelperText);
     },
 
     // Display helper
@@ -147,7 +167,7 @@ var QuantumTextEditorProcessor = {
                     click: function(e){
                         e.preventDefault();
                         //alert("test")
-                        QuantumTextEditorProcessor.selectHelper(e);
+                        QuantumTextEditorProcessor.onMouseHelperSelect(e);
                     }}).appendTo("#quantum-text-help-list");
 
             }
@@ -160,14 +180,14 @@ var QuantumTextEditorProcessor = {
     chooseHelperItemNext : function() {
 
         // if next item exists
-        if( $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem+1)).length )         // use this if you are using id to check
+        if( $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem+1)).length )         // use this if you are using id to check
         {
             // remove selection from old item
-            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).removeClass('quantum-text-help-list-elem-current');
+            $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem)).removeClass('quantum-text-help-list-elem-current');
 
             // add selection to the new item
-            this.textBoxHelperItem++;
-            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).addClass('quantum-text-help-list-elem-current');
+            this.selectedHelperItem++;
+            $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem)).addClass('quantum-text-help-list-elem-current');
         }
     },
 
@@ -175,14 +195,14 @@ var QuantumTextEditorProcessor = {
     chooseHelperItemPrev : function() {
 
         // if next item exists
-        if( $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem-1)).length )         // use this if you are using id to check
+        if( $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem-1)).length )         // use this if you are using id to check
         {
             // remove selection from old item
-            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).removeClass('quantum-text-help-list-elem-current');
+            $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem)).removeClass('quantum-text-help-list-elem-current');
 
             // add selection to the new item
-            this.textBoxHelperItem--;
-            $('#quantum-text-help-list-elem-'+String(this.textBoxHelperItem)).addClass('quantum-text-help-list-elem-current');
+            this.selectedHelperItem--;
+            $('#quantum-text-help-list-elem-'+String(this.selectedHelperItem)).addClass('quantum-text-help-list-elem-current');
         }
     }
 
@@ -205,8 +225,8 @@ $(QuantumTextEditorProcessor.textBox).on("keydown", function (e) {
             QuantumTextEditorProcessor.chooseHelperItemPrev();
             e.preventDefault();
         }
-        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which] && QuantumTextEditorProcessor.textBoxHelperItem > -1) { // accept key
-            QuantumTextEditorProcessor.selectHelper();
+        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which] && QuantumTextEditorProcessor.selectedHelperItem > -1) { // accept key
+            QuantumTextEditorProcessor.onKeyboardHelperSelect();
             e.preventDefault();
         }
         //console.log(e.which);
@@ -224,7 +244,7 @@ $(QuantumTextEditorProcessor.textBox).on("keyup", function (e) {
             e.preventDefault();
             return;
         }
-        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which] && QuantumTextEditorProcessor.textBoxHelperItem > -1) { // accept key
+        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which] && QuantumTextEditorProcessor.selectedHelperItem > -1) { // accept key
             e.preventDefault();
             return;
         }
