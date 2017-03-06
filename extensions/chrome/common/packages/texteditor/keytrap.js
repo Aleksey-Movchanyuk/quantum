@@ -191,7 +191,7 @@ $(QuantumTextEditorProcessor.textBox).on("keydown", function (e) {
 
     // if helper is showen
     if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ) {
-        console.log(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]);
+
         if(e.which == 40) { // down key
             QuantumTextEditorProcessor.textBoxHelper.focus();
             QuantumTextEditorProcessor.chooseHelperItemNext();
@@ -201,7 +201,6 @@ $(QuantumTextEditorProcessor.textBox).on("keydown", function (e) {
             QuantumTextEditorProcessor.chooseHelperItemPrev();
         }
         else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]) { // accept key
-            console.log(e.which);
             QuantumTextEditorProcessor.selectHelper();
         }
         //console.log(e.which);
