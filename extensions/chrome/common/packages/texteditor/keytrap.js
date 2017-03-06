@@ -89,19 +89,6 @@ var QuantumTextEditorProcessor = {
         return this.textBox.val();
     },
 
-    predictWord : function(sentence) {
-
-        var result = [
-            sentence + ' 0',
-            sentence + ' 1',
-            sentence + ' 2',
-            sentence + ' 3',
-            sentence + ' 4'
-        ];
-
-        return result;
-    },
-
     // hide helper
     hideHelper : function() {
         // reset selected item from helper
@@ -125,7 +112,7 @@ var QuantumTextEditorProcessor = {
             // Find cursor position
 
             // Predict word
-            var predictionResult = this.predictWord(this.getCurrentSentence());
+            var predictionResult = QuantumTextEditorPredictor.predictWord(this.getCurrentSentence());
 
             // Predict sentence
 
