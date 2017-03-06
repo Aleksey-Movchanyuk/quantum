@@ -15,7 +15,7 @@ var QuantumTextEditor = {
 			if (!sender.tab)
 				switch(data.action){
 
-          case 'popupQuantumTextEditor':
+          		case 'popupQuantumTextEditor':
 
 		          	// If not injected yet
 					if ($('#'+this.quantumTextEditorId).length==0){
@@ -30,6 +30,9 @@ var QuantumTextEditor = {
 
                     activeElement = document.activeElement;
                     activeElementText = activeElement.value;
+
+					// Save it using the Chrome extension storage API.
+					chrome.storage.sync.set({"currentText": activeElementText});
 
                     $('.quantum-text-editor-popup').css('display','block');
 					document.getElementById("quantum-text-editor-popup").contentWindow.postMessage(activeElementText, "*");

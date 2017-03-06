@@ -87,7 +87,10 @@ chrome.contextMenus.onClicked.addListener(function (info, tab) {
           break;
       case "quantumTextEditorFromEditable":
           // send message to content script
-          chrome.tabs.sendMessage(tab.id, {action: "popupQuantumTextEditor"});
+          chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+              chrome.tabs.sendMessage(tabs[0].id, {action: "popupQuantumTextEditor"});  
+          });
+
           break;
   }
 

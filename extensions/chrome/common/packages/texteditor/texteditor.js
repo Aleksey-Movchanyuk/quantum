@@ -3,27 +3,20 @@ function getCurrentQuantumText() {
   return $('.quantum-text-area').val();
 }
 
-function setCurrentQuantumText(evt) {
-
-  //if (evt.origin == "http://quantum.ai") {
-    $('.quantum-text-area').val(evt.data);
-  //}
+function setCurrentQuantumText(text) {
+  $('.quantum-text-area').val(text);
 }
-
-
-// messages from content.js
-if (window.addEventListener) {
-	// For standards-compliant web browsers
-	window.addEventListener("message", setCurrentQuantumText, false);
-}
-else {
-	window.attachEvent("onmessage", setCurrentQuantumText);
-}
-
 
 
 // messages to background.js
 $(document).ready(function() {
+
+  // Copy current element text into textarea
+  chrome.storage.sync.get('currentText', function (items) {
+      if (!chrome.runtime.error) {
+        setCurrentQuantumText(items.currentText);
+     }
+  });
 
   // Close Button
   $(".quantum-text-editor-close-btn").click(function () {

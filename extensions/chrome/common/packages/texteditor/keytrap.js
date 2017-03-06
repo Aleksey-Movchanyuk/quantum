@@ -8,43 +8,55 @@ var QuantumTextEditorProcessor = {
     *
     * @type {Object}
     */
-    _BREAK_KEY_MAP : {
+    _BREAK_WORD_KEY_MAP : {
                 13: '', //enter
                 27: '', //escape
-                32: ' ',
-                33: '!',
-                34: '"',
-                35: '#',
-                36: '$',
-                37: '%',
-                38: '&',
-                39: '\'',
-                40: '(',
+                32: ' ', //space
+                //33: '!',
+                //34: '"',
+                //35: '#',
+                //36: '$',
+                //37: '%',
+                //38: '&',
+                //39: '\'',
+                //40: '(',
                 41: ')',
                 42: '*',
                 43: '+',
                 44: ',',
-                45: '-',
-                46: '.',
-                47: '/',
-                58: ':',
-                59: ';',
+                189: '-',
+                190: '.',
+                111: '/',
+                //58: ':',
+                186: ';',
                 60: '<',
                 61: '=',
                 62: '>',
                 63: '?',
                 64: '@',
-                91: '[',
-                92: '\\',
-                93: ']',
+                219: '[',
+                220: '\\',
+                221: ']',
                 94: '^',
                 95: '_',
-                96: '`',
+                192: '`',
                 123: '{',
                 124: '|',
                 125: '}',
                 126: '~'
     },
+
+   _HELPER_ACCEPT_KEY_MAP : {
+                13: '',  //enter
+                32: ' ', //space
+                39: ''   //right arrow
+   },
+
+   _HELPER_CTRL_KEY_MAP : {
+                38: ' ', //up arrow
+                40: ''   //down arrow
+   },
+
 
     // text box elements
     textBox : $('#quantum-text-area'),
@@ -89,7 +101,7 @@ var QuantumTextEditorProcessor = {
         return this.textBox.val();
     },
 
-    // hide helper
+    // Hide helper
     hideHelper : function() {
         // reset selected item from helper
         this.textBoxHelperItem = -1;
@@ -97,15 +109,15 @@ var QuantumTextEditorProcessor = {
         this.textBox.focus();
     },
 
-    // on select helper
+    // On select helper
     selectHelper : function(e) {
         this.hideHelper();
     },
 
-    // display helper
+    // Display helper
     displayHelper : function(e) {
 
-        if (this._BREAK_KEY_MAP[e.which]) {
+        if (this._BREAK_WORD_KEY_MAP[e.which]) {
             this.hideHelper();
         }
         else {
@@ -120,7 +132,7 @@ var QuantumTextEditorProcessor = {
             this.textBoxHelper.empty();
 
             var currentSentance = this.getCurrentSentence() + String.fromCharCode(e.which);
-            console.log(e.which);
+            //console.log(e.which);
 
             // Fill help list with new values
             for(var i = 0; i < predictionResult.length; i++) {
@@ -141,6 +153,7 @@ var QuantumTextEditorProcessor = {
         }
     },
 
+    // Button down arrow handler
     chooseHelperItemNext : function() {
 
         // if next item exists
@@ -155,6 +168,7 @@ var QuantumTextEditorProcessor = {
         }
     },
 
+    // Button up arrow handler
     chooseHelperItemPrev : function() {
 
         // if next item exists
@@ -169,34 +183,51 @@ var QuantumTextEditorProcessor = {
         }
     }
 
-}
+};
 
 
+// Keydown handler
+$(QuantumTextEditorProcessor.textBox).on("keydown", function (e) {
 
-// keyup
-$(QuantumTextEditorProcessor.textBox).on("keyup", function (e) {
-    // use e.which
-    //alert(e.which);
-    if(e.which == 27) { // escape key
-        QuantumTextEditorProcessor.hideHelper();
-    }
-    else if(e.which == 40) { // down key
-        // if helper is showen
-        if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ){
-
+    // if helper is showen
+    if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ) {
+        console.log(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]);
+        if(e.which == 40) { // down key
             QuantumTextEditorProcessor.textBoxHelper.focus();
             QuantumTextEditorProcessor.chooseHelperItemNext();
         }
-    }
-    else if(e.which == 38) { // up key
-        // if helper is showen
-        if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ){
-
+        else if(e.which == 38) { // up key
             QuantumTextEditorProcessor.textBoxHelper.focus();
             QuantumTextEditorProcessor.chooseHelperItemPrev();
         }
+        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]) { // accept key
+            console.log(e.which);
+            QuantumTextEditorProcessor.selectHelper();
+        }
+        //console.log(e.which);
+    }
+});
+
+
+// Keyup handler
+$(QuantumTextEditorProcessor.textBox).on("keyup", function (e) {
+
+    // if helper is showen
+    if ( QuantumTextEditorProcessor.textBoxHelper.css('display') == 'block' ) {
+
+        if(QuantumTextEditorProcessor._HELPER_CTRL_KEY_MAP[e.which]) { // helper control key
+            e.preventDefault();
+        }
+        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]) { // accept key
+            e.preventDefault();
+        }
+        else if(e.which == 27) { // escape key
+            QuantumTextEditorProcessor.hideHelper();
+        }
+        //console.log(e.which);
     }
     else {
         QuantumTextEditorProcessor.displayHelper(e);        
     }
+
 });
