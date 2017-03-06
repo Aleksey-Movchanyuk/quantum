@@ -9,9 +9,12 @@ var QuantumTextEditorProcessor = {
     * @type {Object}
     */
     _BREAK_WORD_KEY_MAP : {
-                13: '', //enter
-                27: '', //escape
+                13: ' ', //enter
+                27: ' ', //escape
                 32: ' ', //space
+                38: ' ', //up arrow
+                39: ' ', //right arrow
+                40: ' ', //down arrow
                 //33: '!',
                 //34: '"',
                 //35: '#',
@@ -47,14 +50,14 @@ var QuantumTextEditorProcessor = {
     },
 
    _HELPER_ACCEPT_KEY_MAP : {
-                13: '',  //enter
+                13: ' ', //enter
                 32: ' ', //space
-                39: ''   //right arrow
+                39: ' '  //right arrow
    },
 
    _HELPER_CTRL_KEY_MAP : {
-                38: ' ', //up arrow
-                40: ''   //down arrow
+                38: ' ',  //up arrow
+                40: ' '   //down arrow
    },
 
 
@@ -195,13 +198,16 @@ $(QuantumTextEditorProcessor.textBox).on("keydown", function (e) {
         if(e.which == 40) { // down key
             QuantumTextEditorProcessor.textBoxHelper.focus();
             QuantumTextEditorProcessor.chooseHelperItemNext();
+            e.preventDefault();
         }
         else if(e.which == 38) { // up key
             QuantumTextEditorProcessor.textBoxHelper.focus();
             QuantumTextEditorProcessor.chooseHelperItemPrev();
+            e.preventDefault();
         }
-        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]) { // accept key
+        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which] && QuantumTextEditorProcessor.textBoxHelperItem > -1) { // accept key
             QuantumTextEditorProcessor.selectHelper();
+            e.preventDefault();
         }
         //console.log(e.which);
     }
@@ -216,17 +222,15 @@ $(QuantumTextEditorProcessor.textBox).on("keyup", function (e) {
 
         if(QuantumTextEditorProcessor._HELPER_CTRL_KEY_MAP[e.which]) { // helper control key
             e.preventDefault();
+            return;
         }
-        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which]) { // accept key
+        else if(QuantumTextEditorProcessor._HELPER_ACCEPT_KEY_MAP[e.which] && QuantumTextEditorProcessor.textBoxHelperItem > -1) { // accept key
             e.preventDefault();
+            return;
         }
-        else if(e.which == 27) { // escape key
-            QuantumTextEditorProcessor.hideHelper();
-        }
-        //console.log(e.which);
+
     }
-    else {
-        QuantumTextEditorProcessor.displayHelper(e);        
-    }
+
+    QuantumTextEditorProcessor.displayHelper(e);        
 
 });
