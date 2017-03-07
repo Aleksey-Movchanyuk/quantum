@@ -29,7 +29,10 @@
           }
   ],
 
-  "web_accessible_resources": [ "common/packages/texteditor/texteditor.html" ],
+  "web_accessible_resources": [ 
+        "common/packages/texteditor/texteditor.html",
+        "common/fonts/LatoOFL/Lato-Lig.ttf"
+   ],
 
 
   "permissions": [

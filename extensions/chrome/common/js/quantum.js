@@ -21,10 +21,22 @@ var QuantumTextEditor = {
 					if ($('#'+this.quantumTextEditorId).length==0){
 
 						var url = chrome.extension.getURL('common/packages/texteditor/texteditor.html');
-						var iframe = '<iframe id="'+this.quantumTextEditorId+'" src="' + url + '" class="'+this.quantumTextEditorClass+'" style="display:none;opacity:1;" frameBorder="0"></iframe>';
+						var quantumTextEditorHtml = 
+							'<div id="' + this.quantumTextEditorId + 
+								'" class="' + this.quantumTextEditorClass + '" style="display:none;opacity:1;">' + 
+								'<iframe id="quantum-text-editor" class="quantum-text-editor" src="' + url + '" frameBorder="0"></iframe>' + 
+								'</div>';
 						//iframe = iframe.replace('Some text in the modal.', activeElementText);
 
-						$('body:eq(0)').append(iframe);
+						$('body:eq(0)').append(quantumTextEditorHtml);
+
+						// append font
+						var fa = document.createElement('style');
+						fa.type = 'text/css';
+						fa.textContent = '@font-face { font-family: Lato-Light; src: url("'
+							+ chrome.extension.getURL('common/fonts/LatoOFL/Lato-Lig.ttf')
+							+ '"); }';
+						$('body:eq(0)').append(fa);
 
 					}
 
@@ -35,8 +47,6 @@ var QuantumTextEditor = {
 					chrome.storage.sync.set({"currentText": activeElementText});
 
                     $('.quantum-text-editor-popup').css('display','block');
-					document.getElementById("quantum-text-editor-popup").contentWindow.postMessage(activeElementText, "*");
-                    //$('.quantum-text-area').val(activeElementText);
     				break;
 
     			case 'hideQuantumTextEditorPopup':

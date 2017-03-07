@@ -1,34 +1,26 @@
 <html>
   <head>
-    <title>Quantum Text Editor</title>
+    <!--title>Quantum Text Editor</title-->
 
 		<link href="../../css/quantum-core.css" rel="stylesheet">
-		<link href="../../../assets/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css2" rel="stylesheet">
+		<link href="../../../assets/bootstrap/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link href="../../../assets/bootstrap/bootstrap-3.3.7/css/bootstrap-theme.min.css" rel="stylesheet">
 
-    <style>
-        .panel-resizable {
-            resize: both;
-          overflow: auto
-        }
-    </style>
   </head>
   <body>
 
-		<div>
-			<div class="quantum-text-editor panel panel-default">
-
+		<div class="quantum-text-editor-content"> 
 				<div class="quantum-text-editor-header">
 					<button type="button" class="quantum-text-editor-close-btn" >&times;</button>
 					<h4 class="quantum-text-editor-title">Quantum Text Editor</h4>
 				</div>
 
-				<textarea id="quantum-text-area" class="quantum-text-area panel-body panel-resizable">Hello world </textarea>
+				<textarea id="quantum-text-area" class="quantum-text-area">Hello world </textarea>
 
 				<div id='quantum-text-help-list' class='quantum-text-help-list' style="display:none;"></div>
 
 
-				<div class="quantum-text-editor-footer panel-footer">
+				<div class="quantum-text-editor-footer">
 					<div class="quantum-text-editor-footer-lang">LANGUAGE: ENGLISH</div>
 					<div class="quantum-text-editor-footer-sentiment">DICTIONARY: ENGLISH (UNIVERSAL)</div>
 					<div class="quantum-text-editor-footer-words">COUNT OF WORDS: 7</div>
@@ -37,14 +29,7 @@
 					</div>
 				</div>
 
-			</div>
 		</div>
-
-		<!--div class="panel panel-default">
-        <div class="panel-body panel-resizable" style="height:280px">
-        </div>
-        <div class="panel-footer">Band1</div>
-    </div-->
 
 		<script src="../../../assets/jquery/jquery-3.1.1/jquery-3.1.1.min.js"></script>
 		<script src="../../../assets/bootstrap/bootstrap-3.3.7/js/bootstrap.min.js"></script>

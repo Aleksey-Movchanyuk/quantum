@@ -1,7 +1,7 @@
 @font-face
 {
   font-family: 'Lato-Light';
-  src: url('../fonts/LatoOFL/Lato-Lig.ttf') format('truetype');
+  src: url('../../common/fonts/LatoOFL/Lato-Lig.ttf') format('truetype');
 }
 
 
@@ -25,16 +25,14 @@
 }
 
 .quantum-text-editor {
-    border-radius: 4px;
     margin: 0;
     min-width: 800px;
     min-height: 600px;
-    font-family: 'Lato',sans-serif;
+    font-family: 'Lato-Light', Arial, sans-serif;
 
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid #999;
     border: 1px solid rgba(0,0,0,.2);
     border-radius: 6px;
     outline: 0;
@@ -47,8 +45,14 @@
     -ms-transform: translate(-50%, -50%); /* IE 9 */
     -webkit-transform: translate(-50%, -50%); /* Safari iOS */
     transform: translate(-50%, -50%); /* Rest of browsers */
+
+    resize: both;
+    /*overflow: auto;*/
 }
 
+.quantum-text-editor-content {
+    font-family: 'Lato-Light', Arial, sans-serif;
+}
 
 .quantum-text-editor-header {
   padding: 15px;
@@ -72,7 +76,7 @@
   border-top: 1px solid #e5e5e5;
   position: absolute;
   bottom: 0;
-  height: 35px;
+  height: 45px;
   width: 100%;
   background: #f6f6f6;
   background: -webkit-linear-gradient(right,#eee 0%,#f6f6f6 100%);
@@ -156,6 +160,12 @@
    left: 8px;
    position: absolute;
  }
+
+ .quantum-text-area:focus {
+    outline: none !important;
+    border:1px solid #e5e5e5;
+    box-shadow: none !important;
+}
 
 
 /*
