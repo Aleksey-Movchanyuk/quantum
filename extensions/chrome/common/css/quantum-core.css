@@ -9,18 +9,19 @@
 * Popup structure
 */
 .quantum-text-editor-popup {
-  position: fixed;
-  overflow-y: auto;
+  margin: 0;
   height: 100%;
   width: 100%;
   top: 0px;
   left: 0px;
+  z-index: 1000;
+  position: fixed;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.5) !important;
   color: rgb(0, 0, 0);
-  z-index: 9999999;
   display: none;
   transform: translateZ(0px);
   transition: opacity 0.3s ease-in;
-  background: rgba(0, 0, 0, 0.5) !important;
 }
 
 .quantum-text-editor {

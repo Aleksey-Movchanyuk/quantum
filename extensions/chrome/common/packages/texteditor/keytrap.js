@@ -68,7 +68,11 @@ var QuantumTextEditorProcessor = {
     selectedHelperItem : -1,
     selectedHelperText : '',
 
-    // useful functions
+
+    /************************************
+    /* useful functions
+    *************************************/
+    // Get cursor position 
     getCursorPos : function() {
         var input = this.textBox;
 
@@ -101,6 +105,47 @@ var QuantumTextEditorProcessor = {
         return -1;
     },
 
+    // Get longest sentance
+    findLongestSentence : function(strArr) {
+
+        var maxLength = strArr[0].length;
+        var longestSentence = strArr[0];
+
+        for(var i=0; i < strArr.length; i++ ) {
+            if(strArr[i].length > maxLength) {
+                maxLength = strArr[i].length;
+                longestSentence = strArr[i];
+            }
+        }
+        return longestSentence;
+    },
+
+    // Get current sentence width
+    getWidthOfText : function (txt, fontname, fontsize) {
+        // Set default values
+        if (fontname === undefined) {
+            fontname = "Lato-Light ";
+        }
+        if (fontsize === undefined) {
+            fontsize = "14px ";
+        }
+
+
+        // Create a dummy canvas (render invisible with css)
+        var c=document.createElement('canvas');
+        // Get the context of the dummy canvas
+        var ctx=c.getContext('2d');
+        // Set the context.font to the font that you are using
+        ctx.font = fontsize + fontname;
+        // Measure the string 
+        // !!! <CRUCIAL>  !!!
+        var length = ctx.measureText(txt).width;
+        // !!! </CRUCIAL> !!!
+        // Return width
+        return length;
+    },
+
+    // Get current sentence
     getCurrentSentence : function() {
 
         return this.textBox.val();
@@ -117,7 +162,7 @@ var QuantumTextEditorProcessor = {
 
     // Update current sentance
     updateCurrentSentance : function(text) {
-        this.textBox.val(text);
+        this.textBox.val(text + ' ');
     },
 
     // On keyboard helper select
@@ -171,6 +216,14 @@ var QuantumTextEditorProcessor = {
                     }}).appendTo("#quantum-text-help-list");
 
             }
+
+            // Find width of the longest sentence
+            var longestSentenceWidth = this.getWidthOfText(
+                    this.findLongestSentence(predictionResult)
+                );
+
+            // Set Helper width as longest sentence width
+            $("#quantum-text-help-list").width( longestSentenceWidth + 8 );
 
             this.textBoxHelper.show();
         }
