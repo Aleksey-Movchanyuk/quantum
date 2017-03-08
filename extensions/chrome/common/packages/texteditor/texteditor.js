@@ -30,3 +30,15 @@ $(document).ready(function() {
 
 });
 
+
+$(".quantum-text-editor-btn-language").hover(            
+  function() {
+    $('.quantum-text-editor-btn-language-popup', this).stop( true, true ).fadeIn("fast");
+    $(this).toggleClass('open');
+    //$('b', this).toggleClass("caret caret-up");                
+  },
+  function() {
+    $('.quantum-text-editor-btn-language-popup', this).stop( true, true ).fadeOut("fast");
+    $(this).toggleClass('open');
+    //$('b', this).toggleClass("caret caret-up");                
+});

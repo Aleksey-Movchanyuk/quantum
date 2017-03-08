@@ -31,7 +31,8 @@
 
   "web_accessible_resources": [ 
         "common/packages/texteditor/texteditor.html",
-        "common/fonts/LatoOFL/Lato-Lig.ttf"
+        "common/fonts/LatoOFL/Lato-Lig.ttf",
+        "common/fonts/LatoOFL/Lato-Reg.ttf"
    ],
 
 

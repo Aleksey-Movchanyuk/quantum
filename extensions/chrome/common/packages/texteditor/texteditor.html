@@ -15,18 +15,40 @@
 					<h4 class="quantum-text-editor-title">Quantum Text Editor</h4>
 				</div>
 
-				<textarea id="quantum-text-area" class="quantum-text-area">Hello world </textarea>
+				<textarea id="quantum-text-area" class="quantum-text-area">Hello world</textarea>
 
 				<div id='quantum-text-help-list' class='quantum-text-help-list' style="display:none;"></div>
 
 
 				<div class="quantum-text-editor-footer">
-					<div class="quantum-text-editor-footer-lang">LANGUAGE: ENGLISH</div>
-					<div class="quantum-text-editor-footer-sentiment">DICTIONARY: ENGLISH (UNIVERSAL)</div>
-					<div class="quantum-text-editor-footer-words">COUNT OF WORDS: 7</div>
-					<div class="quantum-text-editor-footer-btns">
-						<button type="button" class="quantum-text-editor-submit-btn">Submit</button>
+					<div class="btn-toolbar" role="toolbar">
+						<div class="btn-group quantum-text-editor-btn-group" role="group">
+							<button type="button" class="quantum-text-editor-btn quantum-text-editor-btn-language"><span class="glyphicon quantum-text-editor-icon-language"></span>EN</button>
+							<div class="quantum-text-editor-btn-language-popup" style="visibility: none;">
+								<h2>Language Selector</h2>
+								<p>This functionality available only for Premium User.</p>
+								<button type="button" class="quantum-text-editor-submit-btn">Update to Premium</button>
+							</div>
+						</div>
+						<div class="btn-group quantum-text-editor-btn-group" role="group">
+							<button type="button" class="quantum-text-editor-btn"><span class="glyphicon quantum-text-editor-icon-dictionary"></span>English (Universal)</button>
+						</div>
+						<!--div class="btn-group quantum-text-editor-btn-group" role="group">
+							<button type="button" class="quantum-text-editor-btn">Save Draft</button>
+							<button type="button" class="quantum-text-editor-btn">Open Draft</button>
+						</div>
+						<div class="btn-group" role="group">
+							<button type="button" class="quantum-text-editor-btn">Templates</button>
+						</div-->
+						<div class="btn-group quantum-text-editor-right-btn-group" role="group">
+							<button type="button" class="quantum-text-editor-submit-btn">Submit</button>
+						</div>
 					</div>
+
+					<!--div class="quantum-text-editor-footer-lang">LANGUAGE: ENGLISH</div>
+					<div class="quantum-text-editor-footer-sentiment">DICTIONARY: ENGLISH (UNIVERSAL)</div>
+					<div class="quantum-text-editor-footer-words">COUNT OF WORDS: 7</div-->
+
 				</div>
 
 		</div>
