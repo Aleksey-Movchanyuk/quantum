@@ -31,14 +31,19 @@ $(document).ready(function() {
 });
 
 
-$(".quantum-text-editor-btn-language").hover(            
+$(".quantum-text-editor-btn-language-dropdown").hover(            
   function() {
-    $('.quantum-text-editor-btn-language-popup', this).stop( true, true ).fadeIn("fast");
-    $(this).toggleClass('open');
-    //$('b', this).toggleClass("caret caret-up");                
+    $('.quantum-text-editor-btn-language-popup').stop( true, true ).fadeIn(100);              
   },
   function() {
-    $('.quantum-text-editor-btn-language-popup', this).stop( true, true ).fadeOut("fast");
-    $(this).toggleClass('open');
-    //$('b', this).toggleClass("caret caret-up");                
+    $('.quantum-text-editor-btn-language-popup').stop( true, true ).fadeOut(100);              
+});
+
+
+$(".quantum-text-editor-btn-dictionary-dropdown").hover(            
+  function() {
+    $('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeIn(100);              
+  },
+  function() {
+    $('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeOut(100);               
 });

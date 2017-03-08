@@ -201,7 +201,7 @@
     margin-right: 5px
 }
 
-.quantum-text-editor-btn-language-popup {
+.quantum-text-editor-btn-language-popup, .quantum-text-editor-btn-dictionary-popup {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -218,8 +218,12 @@
     padding: 6px 0;
     position: absolute;
 
-    top: -130px;
+    top: -140px;
     width: 450px;
+}
+
+.quantum-text-editor-btn-language-popup-body, .quantum-text-editor-btn-dictionary-popup-body {
+    padding: 5px;
 }
 
 /*
@@ -273,7 +277,20 @@
   left: 8px;
 
   width: 300px;
+
+  /*
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  */
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    -webkit-transition: opacity .218s;
+    transition: opacity .218s;
+    background: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.2);
+
   /* padding-top: 10px; 
   padding-bottom: 20px; 
   position: relative;*/

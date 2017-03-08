@@ -22,16 +22,31 @@
 
 				<div class="quantum-text-editor-footer">
 					<div class="btn-toolbar" role="toolbar">
+						
 						<div class="btn-group quantum-text-editor-btn-group" role="group">
-							<button type="button" class="quantum-text-editor-btn quantum-text-editor-btn-language"><span class="glyphicon quantum-text-editor-icon-language"></span>EN</button>
-							<div class="quantum-text-editor-btn-language-popup" style="visibility: none;">
-								<h2>Language Selector</h2>
-								<p>This functionality available only for Premium User.</p>
-								<button type="button" class="quantum-text-editor-submit-btn">Update to Premium</button>
+							<div class="quantum-text-editor-btn-language-dropdown">
+								<button type="button" class="quantum-text-editor-btn quantum-text-editor-btn-language"><span class="glyphicon quantum-text-editor-icon-language"></span>EN</button>
+								<div class="quantum-text-editor-btn-language-popup" style="display:none;">
+									<div class="quantum-text-editor-btn-language-popup-body">
+										<h2>Language Selector</h2>
+										<p>This functionality available only for Premium User.</p>
+										<button type="button" class="quantum-text-editor-submit-btn">Update to Premium</button>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div class="btn-group quantum-text-editor-btn-group" role="group">
-							<button type="button" class="quantum-text-editor-btn"><span class="glyphicon quantum-text-editor-icon-dictionary"></span>English (Universal)</button>
+						<div class="btn-group" role="group">
+							<div class="quantum-text-editor-btn-dictionary-dropdown">
+								<button type="button" class="quantum-text-editor-btn quantum-text-editor-btn-dictionary"><span class="glyphicon quantum-text-editor-icon-dictionary"></span>English (Universal)</button>
+								<div class="quantum-text-editor-btn-dictionary-popup" style="display:none;">
+									<div class="quantum-text-editor-btn-dictionary-popup-body">
+										<h2>Dictionary Selector</h2>
+										<p>This functionality available only for Premium User.</p>
+										<button type="button" class="quantum-text-editor-submit-btn">Update to Premium</button>
+									</div>
+								</div>
+							</div>
+
 						</div>
 						<!--div class="btn-group quantum-text-editor-btn-group" role="group">
 							<button type="button" class="quantum-text-editor-btn">Save Draft</button>
