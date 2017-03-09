@@ -185,7 +185,7 @@
 
 .quantum-text-editor-icon-language {
     float: left!important;
-    background: url(../icons/globe.png) no-repeat scroll 0 0;
+    background: url(../icons/globe_20.png) no-repeat scroll 0 0;
     background-size: cover;
     height: 20px;
     width: 20px;
@@ -194,14 +194,32 @@
 
 .quantum-text-editor-icon-dictionary {
     float: left!important;
-    background: url(../icons/dictionary.png) no-repeat scroll 0 0;
+    background: url(../icons/dictionary_20.png) no-repeat scroll 0 0;
     background-size: cover;
     height: 20px;
     width: 20px;
     margin-right: 5px
 }
 
-.quantum-text-editor-btn-language-popup, .quantum-text-editor-btn-dictionary-popup {
+.quantum-text-editor-icon-save {
+    float: left!important;
+    background: url(../icons/save.png) no-repeat scroll 0 0;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px
+}
+
+.quantum-text-editor-icon-open {
+    float: left!important;
+    background: url(../icons/open_20.png) no-repeat scroll 0 0;
+    background-size: cover;
+    height: 20px;
+    width: 20px;
+    margin-right: 5px
+}
+
+.quantum-text-editor-btn-popup {
     -webkit-border-radius: 0;
     border-radius: 0;
     -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -217,12 +235,20 @@
     outline: none;
     padding: 6px 0;
     position: absolute;
+}
 
+.quantum-text-editor-btn-language-popup, .quantum-text-editor-btn-dictionary-popup {
     top: -140px;
     width: 450px;
 }
 
-.quantum-text-editor-btn-language-popup-body, .quantum-text-editor-btn-dictionary-popup-body {
+.quantum-text-editor-btn-save-popup, .quantum-text-editor-btn-open-popup {
+    top: -140px;
+    width: 250px;
+    height: 140px;
+}
+
+.quantum-text-editor-btn-popup-body {
     padding: 5px;
 }
 

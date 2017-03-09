@@ -47,3 +47,19 @@ $(".quantum-text-editor-btn-dictionary-dropdown").hover(
   function() {
     $('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeOut(100);               
 });
+
+$(".quantum-text-editor-btn-save-dropdown").hover(            
+  function() {
+    $('.quantum-text-editor-btn-save-popup').stop( true, true ).fadeIn(100);              
+  },
+  function() {
+    $('.quantum-text-editor-btn-save-popup').stop( true, true ).fadeOut(100);               
+});
+
+$(".quantum-text-editor-btn-open-dropdown").hover(            
+  function() {
+    $('.quantum-text-editor-btn-open-popup').stop( true, true ).fadeIn(100);              
+  },
+  function() {
+    $('.quantum-text-editor-btn-open-popup').stop( true, true ).fadeOut(100);               
+});
