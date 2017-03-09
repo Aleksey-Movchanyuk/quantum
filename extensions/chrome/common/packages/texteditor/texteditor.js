@@ -33,33 +33,41 @@ $(document).ready(function() {
 
 $(".quantum-text-editor-btn-language-dropdown").hover(            
   function() {
-    $('.quantum-text-editor-btn-language-popup').stop( true, true ).fadeIn(100);              
+    //$('.quantum-text-editor-btn-language-popup').stop( true, true ).fadeIn(100);   
+    $('.quantum-text-editor-btn-language-popup').show();           
   },
   function() {
-    $('.quantum-text-editor-btn-language-popup').stop( true, true ).fadeOut(100);              
+    //$('.quantum-text-editor-btn-language-popup').stop( true, true ).fadeOut(100);   
+    $('.quantum-text-editor-btn-language-popup').hide();           
 });
 
 
 $(".quantum-text-editor-btn-dictionary-dropdown").hover(            
   function() {
-    $('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeIn(100);              
+    //$('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeIn(100);
+    $('.quantum-text-editor-btn-dictionary-popup').show();         
   },
   function() {
-    $('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeOut(100);               
+    //$('.quantum-text-editor-btn-dictionary-popup').stop( true, true ).fadeOut(100);  
+    $('.quantum-text-editor-btn-dictionary-popup').hide();             
 });
 
 $(".quantum-text-editor-btn-save-dropdown").hover(            
   function() {
-    $('.quantum-text-editor-btn-save-popup').stop( true, true ).fadeIn(100);              
+    //$('.quantum-text-editor-btn-save-popup').stop( true, true ).fadeIn(100);  
+    $('.quantum-text-editor-btn-save-popup').show();            
   },
   function() {
-    $('.quantum-text-editor-btn-save-popup').stop( true, true ).fadeOut(100);               
+    //$('.quantum-text-editor-btn-save-popup').stop( true, true ).fadeOut(100);   
+    $('.quantum-text-editor-btn-save-popup').hide();            
 });
 
 $(".quantum-text-editor-btn-open-dropdown").hover(            
   function() {
-    $('.quantum-text-editor-btn-open-popup').stop( true, true ).fadeIn(100);              
+    //$('.quantum-text-editor-btn-open-popup').stop( true, true ).fadeIn(100);  
+    $('.quantum-text-editor-btn-open-popup').show();            
   },
   function() {
-    $('.quantum-text-editor-btn-open-popup').stop( true, true ).fadeOut(100);               
+    //$('.quantum-text-editor-btn-open-popup').stop( true, true ).fadeOut(100);   
+    $('.quantum-text-editor-btn-open-popup').hide();            
 });

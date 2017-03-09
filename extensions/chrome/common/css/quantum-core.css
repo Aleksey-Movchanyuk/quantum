@@ -113,7 +113,7 @@
     padding: 6px 12px;
     margin-bottom: 0;
 
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 400;
     line-height: 1.42857143;
 
@@ -137,8 +137,7 @@
 }
 
 .quantum-text-editor-btn:hover {
-    border: 1px solid #cfcfcf !important;
-
+    /*border: 1px solid #cfcfcf !important;*/
     background-color: #EEE;
     cursor: hand;
 }
@@ -189,7 +188,7 @@
     background-size: cover;
     height: 20px;
     width: 20px;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .quantum-text-editor-icon-dictionary {
@@ -198,7 +197,7 @@
     background-size: cover;
     height: 20px;
     width: 20px;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .quantum-text-editor-icon-save {
@@ -207,7 +206,7 @@
     background-size: cover;
     height: 20px;
     width: 20px;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .quantum-text-editor-icon-open {
@@ -216,7 +215,7 @@
     background-size: cover;
     height: 20px;
     width: 20px;
-    margin-right: 5px
+    margin-right: 5px;
 }
 
 .quantum-text-editor-btn-popup {
