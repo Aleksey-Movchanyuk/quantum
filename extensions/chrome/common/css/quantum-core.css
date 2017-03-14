@@ -19,7 +19,7 @@
   width: 100%;
   top: 0px;
   left: 0px;
-  z-index: 1000;
+  z-index: 10000;
   position: fixed;
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.5) !important;
