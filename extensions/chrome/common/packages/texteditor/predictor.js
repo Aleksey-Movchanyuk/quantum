@@ -23,6 +23,10 @@ var QuantumTextEditorPredictor = {
             sentence + ' 3',
             sentence + ' 4'
         ];
+		
+		// rest api request 
+		var httpRequest = "http://quantum.ai/api/textpredictor/?" + encodeURI(sentence);
+		
 
         return result;
     }
