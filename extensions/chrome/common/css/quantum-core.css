@@ -184,7 +184,7 @@
 
 .quantum-text-editor-icon-language {
     float: left!important;
-    background: url(../icons/globe_20.png) no-repeat scroll 0 0;
+    background: url(../icons/globe_64.png) no-repeat scroll 0 0;
     background-size: cover;
     height: 20px;
     width: 20px;
@@ -193,7 +193,7 @@
 
 .quantum-text-editor-icon-dictionary {
     float: left!important;
-    background: url(../icons/dictionary_20.png) no-repeat scroll 0 0;
+    background: url(../icons/dictionary_64.png) no-repeat scroll 0 0;
     background-size: cover;
     height: 20px;
     width: 20px;
@@ -211,7 +211,7 @@
 
 .quantum-text-editor-icon-open {
     float: left!important;
-    background: url(../icons/open_20.png) no-repeat scroll 0 0;
+    background: url(../icons/open_64.png) no-repeat scroll 0 0;
     background-size: cover;
     height: 20px;
     width: 20px;
